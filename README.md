@@ -17,24 +17,3 @@ A bank in India would like to get a better understanding of customers who apply 
 
 ## Exploring & Cleaning the Dataset
 
-```python
-print(df.info(),'\n')
-print(f'The shape of the Dataset is: {df.shape}')
-
-print(f'There are {df.duplicated().sum()} duplicated values','\n')
-print(f'===========================================\n\n Missing Values:')
-total = df.isnull().sum().sort_values(ascending=False)
-percent = (df.isnull().sum()/df.isnull().count()).sort_values(ascending=False)
-missing_data = pd.concat([total, percent], axis=1, keys=['Total', 'Percent'])
-missing_data.head()
-
-df.drop_duplicates(inplace=True)
-print(f'After dropping duplicated values we have {df.duplicated().sum()} shown in the dataset')
-
-df.describe().T
-
-plt.figure(figsize = (24, 12))
-
-corr = df.corr()
-sns.heatmap(corr, annot = True, linewidths = 1)
-plt.show()
